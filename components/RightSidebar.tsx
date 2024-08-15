@@ -9,12 +9,12 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
       <section className="flex flex-col pb-8">
         <div className="profile-banner">
           <div className="profile">
-            <div className="profile-img">
+            <div className="profile-img border">
               <span className="text-5xl font-bold text-blue-500">
                 {user.firstName[0]}
               </span>
             </div>
-            <div className="profile-details">
+            <div className="profile-details ">
               <h1 className="profile-name">
                 {user.firstName} {user.lastName}
               </h1>
