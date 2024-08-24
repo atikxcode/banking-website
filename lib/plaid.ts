@@ -1,5 +1,4 @@
-import {Configuration, PlaidApi, PlaidEnvironments} from 'plaid';
-
+import { Configuration, PlaidApi, PlaidEnvironments } from 'plaid';
 
 const configuration = new Configuration({
   basePath: PlaidEnvironments.sandbox,
@@ -11,5 +10,4 @@ const configuration = new Configuration({
   }
 })
 
-
-export const plaidClient = new PlaidApi(configuration)
+export const plaidClient = new PlaidApi(configuration);
