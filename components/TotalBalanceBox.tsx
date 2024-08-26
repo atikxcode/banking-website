@@ -4,6 +4,7 @@ import React from 'react'
 import CountUp from 'react-countup'
 import AnimatedCounter from './AnimatedCounter'
 import DoughnutChart from './DoughnutChart'
+import { TotlaBalanceBoxProps } from '@/types'
 
 const TotalBalanceBox = ({
   accounts = [],
