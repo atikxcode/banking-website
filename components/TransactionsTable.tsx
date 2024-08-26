@@ -1,13 +1,13 @@
+import React from 'react'
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { transactionCategoryStyles } from '@/constants'
+import { CategoryBadgeProps, Transaction, TransactionTableProps } from '@/types'
 import {
   cn,
   formatAmount,
@@ -15,6 +15,7 @@ import {
   getTransactionStatus,
   removeSpecialCharacters,
 } from '@/lib/utils'
+import { transactionCategoryStyles } from '@/constants'
 
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
   const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
@@ -30,12 +31,13 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
   )
 }
 
-export const TransactionsTable = ({ transactions }: TransactionTableProps) => {
+const TransactionsTable = ({ transactions }: TransactionTableProps) => {
+  console.log(transactions, 'shahin')
   return (
     <Table>
       <TableHeader className="bg-[#f9fafb]">
         <TableRow>
-          <TableHead className="px-2">Transaction</TableHead>
+          <TableHead className="px-2">Transactions</TableHead>
           <TableHead className="px-2">Amount</TableHead>
           <TableHead className="px-2">Status</TableHead>
           <TableHead className="px-2">Date</TableHead>
@@ -44,24 +46,24 @@ export const TransactionsTable = ({ transactions }: TransactionTableProps) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {transactions.map((t: Transaction) => {
+        {transactions?.map((t: Transaction) => {
           const status = getTransactionStatus(new Date(t.date))
           const amount = formatAmount(t.amount)
 
           const isDebit = t.type === 'debit'
           const isCredit = t.type === 'credit'
-
+          console.log(t.name)
           return (
             <TableRow
               key={t.id}
               className={`${
-                isDebit || amount[0] === '-' ? 'bg-[#FFFBFA]' : 'bg-[#F6FEF9]'
+                isDebit || amount[0] === '-' ? 'bg-[#fffbfa]' : 'bg-[#f6fef9]'
               } !over:bg-none !border-b-DEFAULT`}
             >
               <TableCell className="max-w-[250px] pl-2 pr-10">
                 <div className="flex items-center gap-3">
                   <h1 className="text-14 truncate font-semibold text-[#344054]">
-                    {removeSpecialCharacters(t.name)}
+                    {removeSpecialCharacters(t?.name)}
                   </h1>
                 </div>
               </TableCell>
@@ -69,7 +71,7 @@ export const TransactionsTable = ({ transactions }: TransactionTableProps) => {
               <TableCell
                 className={`pl-2 pr-10 font-semibold ${
                   isDebit || amount[0] === '-'
-                    ? 'text-[#f04438]'
+                    ? 'text-[#f04438'
                     : 'text-[#039855]'
                 }`}
               >
@@ -79,15 +81,13 @@ export const TransactionsTable = ({ transactions }: TransactionTableProps) => {
               <TableCell className="pl-2 pr-10">
                 <CategoryBadge category={status} />
               </TableCell>
-
-              <TableCell className="min-w-32 pl-2 pr-10">
+              <TableCell className="pl-2 pr-10 min-w-32">
                 {formatDateTime(new Date(t.date)).dateTime}
               </TableCell>
 
               <TableCell className="pl-2 pr-10 capitalize min-w-24">
                 {t.paymentChannel}
               </TableCell>
-
               <TableCell className="pl-2 pr-10 max-md:hidden">
                 <CategoryBadge category={t.category} />
               </TableCell>
@@ -98,3 +98,5 @@ export const TransactionsTable = ({ transactions }: TransactionTableProps) => {
     </Table>
   )
 }
+
+export default TransactionsTable

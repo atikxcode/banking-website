@@ -5,6 +5,7 @@ import { Inter, IBM_Plex_Serif } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+
 const ibmPlexSerif = IBM_Plex_Serif({
   subsets: ['latin'],
   weight: ['400', '700'],
@@ -13,7 +14,8 @@ const ibmPlexSerif = IBM_Plex_Serif({
 
 export const metadata: Metadata = {
   title: 'Avalon Sky',
-  description: 'Avalon Sky is a modern banking platform for everyone.',
+  description:
+    'Avalon Sky is a modern and easy to understand banking platform for everyone',
   icons: {
     icon: '/icons/logo.svg',
   },

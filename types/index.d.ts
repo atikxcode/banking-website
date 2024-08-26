@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 
+import { FormState } from "react-hook-form";
+
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -60,7 +62,7 @@ declare type Account = {
   type: string;
   subtype: string;
   appwriteItemId: string;
-  shareableId: string;
+  sharableId: string;
 };
 
 declare type Transaction = {
@@ -89,7 +91,7 @@ declare type Bank = {
   accessToken: string;
   fundingSourceUrl: string;
   userId: string;
-  shareableId: string;
+  sharableId: string;
 };
 
 declare type AccountTypes =
@@ -203,7 +205,7 @@ declare interface BankTabItemProps {
   appwriteItemId?: string;
 }
 
-declare interface TotalBalanceBoxProps {
+declare interface TotlaBalanceBoxProps {
   accounts: Account[];
   totalBanks: number;
   totalCurrentBalance: number;
@@ -314,7 +316,7 @@ declare interface createBankAccountProps {
   accountId: string;
   bankId: string;
   fundingSourceUrl: string;
-  shareableId: string;
+  sharableId: string;
 }
 
 declare interface getBanksProps {

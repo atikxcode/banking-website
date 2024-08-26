@@ -1,8 +1,10 @@
+import { Account, RecentTransactionsProps } from '@/types'
 import Link from 'next/link'
+import React from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { BankTabItem } from './BankTabItem'
 import BankInfo from './BankInfo'
-import { TransactionsTable } from '@/components/TransactionsTable'
+import TransactionsTable from './TransactionsTable'
 import { Pagination } from './Pagination'
 
 const RecentTransactions = ({
@@ -11,11 +13,11 @@ const RecentTransactions = ({
   appwriteItemId,
   page = 1,
 }: RecentTransactionsProps) => {
-  const rowsPerPage = 10
-  const totalPages = Math.ceil(transactions.length / rowsPerPage)
+  const rowPerPage = 10
+  const totalPages = Math.ceil(transactions.length / rowPerPage)
 
-  const indexOfLastTransaction = page * rowsPerPage
-  const indexOfFirstTransaction = indexOfLastTransaction - rowsPerPage
+  const indexOfLastTransaction = page * rowPerPage
+  const indexOfFirstTransaction = indexOfLastTransaction - rowPerPage
 
   const currentTransactions = transactions.slice(
     indexOfFirstTransaction,
@@ -25,7 +27,7 @@ const RecentTransactions = ({
   return (
     <section className="recent-transactions">
       <header className="flex items-center justify-between">
-        <h2 className="recent-transactions-label">Recent transactions</h2>
+        <h2 className="recent-transactions-label">Recent Transactions</h2>
         <Link
           href={`/transaction-history/?id=${appwriteItemId}`}
           className="view-all-btn"
@@ -58,7 +60,6 @@ const RecentTransactions = ({
               appwriteItemId={appwriteItemId}
               type="full"
             />
-
             <TransactionsTable transactions={currentTransactions} />
 
             {totalPages > 1 && (
